@@ -25,21 +25,12 @@ const options = {
       } else {
           refsBtnStart.disabled = false;
           let startTime = timeReal - selectDate;
-          const pushTime = convertMs(-startTime);
-          refDay.textContent = pushTime.days;
-          refHour.textContent = pushTime.hours;
-          refMinute.textContent = pushTime.minutes;
-          refSecond.textContent = pushTime.seconds;
-
-
-        
-          
-          refsBtnStart.addEventListener("click", loggedTime());  
-          function loggedTime() {
-              setInterval(() => {
-                console.log(Number(startTime) + Number(1000));
-           }, 1000)  
-}
+          const {days, hours, minutes, seconds} = convertMs(-startTime);
+          refDay.textContent = days;
+          refHour.textContent = hours;
+          refMinute.textContent = minutes;
+          refSecond.textContent = seconds;
+          localStorage.setItem('timer', -startTime);
       }  
   },
 };
@@ -66,10 +57,29 @@ function convertMs(ms) {
   return { days, hours, minutes, seconds };
 }
 
+let idInterval = null; 
 
-         
+refsBtnStart.addEventListener("click", loggedTime);  
+function loggedTime() {
+    idInterval = setInterval(() => {
+             if (localStorage.getItem('timer') < 1000) {
+            clearInterval(idInterval)  
+            return;
+    } 
+        let msTimer = localStorage.getItem('timer') - 1000;
+        localStorage.setItem('timer', (msTimer))
+        const {days, hours, minutes, seconds} = convertMs(msTimer);
+          refDay.textContent = days;
+          refHour.textContent = hours;
+          refMinute.textContent = minutes;
+        refSecond.textContent = seconds;
+           }, 1000)
+    }
 
-       
+
+
+
+
 
 
 
