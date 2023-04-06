@@ -1,0 +1,27 @@
+.timer {
+    display: flex;
+    gap:10px;
+    justify-content: center;
+    margin-top:20px;
+    font-size: 25;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+}
+
+.value {
+    color: black;;
+    /* font-size: 2; */
+    font-family: fantasy;
+    display: flex;
+    justify-content: center;
+}
+
+#datetime-picker {
+    margin-top: 200px;
+    margin-left: 500px;
+}
+
+
