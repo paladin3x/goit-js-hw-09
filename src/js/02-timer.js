@@ -7,9 +7,7 @@ const refHour = document.querySelector("span[data-hours]");
 const refMinute = document.querySelector("span[data-minutes]");
 const refSecond = document.querySelector("span[data-seconds]");
 
-let settingTimeOut = 0;
 refsBtnStart.disabled = true;
-
 
 const options = {
   enableTime: true,
@@ -63,22 +61,22 @@ refsBtnStart.addEventListener("click", loggedTime);
 function loggedTime() {
     idInterval = setInterval(() => {
              if (localStorage.getItem('timer') < 1000) {
-            clearInterval(idInterval)  
+                 clearInterval(idInterval)  
+                 localStorage.removeItem('timer');
             return;
     } 
         let msTimer = localStorage.getItem('timer') - 1000;
         localStorage.setItem('timer', (msTimer))
         const {days, hours, minutes, seconds} = convertMs(msTimer);
-          refDay.textContent = days;
-          refHour.textContent = hours;
-          refMinute.textContent = minutes;
-        refSecond.textContent = seconds;
+          refDay.textContent = addLeadingZero(`${days}`);
+        refHour.textContent = addLeadingZero(`${hours}`);
+          refMinute.textContent = addLeadingZero(`${minutes}`);
+        refSecond.textContent = addLeadingZero(`${seconds}`);
            }, 1000)
     }
 
-
-
-
+function addLeadingZero(value) {return value.padStart(2, "0")}
+    
 
 
 
