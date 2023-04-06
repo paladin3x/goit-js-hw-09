@@ -6,22 +6,31 @@
     font-size: 25;
 }
 
+input {
+    font-size: 25;
+}
+button {
+    font-size:25;
+    padding: 10px;
+    border-radius: 10;
+    
+}
+
+.styler {
+    display: block;
+    text-align: center;
+}
 .field {
     display: flex;
     flex-direction: column;
 }
 
 .value {
-    color: black;;
-    /* font-size: 2; */
     font-family: fantasy;
     display: flex;
     justify-content: center;
 }
 
 #datetime-picker {
-    margin-top: 200px;
-    margin-left: 500px;
+    margin-top: 280px;
 }
-
-
